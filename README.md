@@ -23,5 +23,6 @@ The `post-commit` hook will post the accepted commit to the specified HTTP endpo
 - Rename `post-commit-windows.py` to `post-commit`
 - Change the first line of each of those scripts, depending on the location of the Python executable on your system
 	- the default is `#!%userprofile%\AppData\Local\Microsoft\WindowsApps\python.exe`
+
 ## Python Libraries
 CodeJoy doesn’t require any libraries outside of core Python
