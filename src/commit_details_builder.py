@@ -15,8 +15,6 @@ class CommitDetailsBuilder():
   def build(self):
     raw_commit = self.runner.fetch_last_commit()
 
-    print(raw_commit)
-
     self.commit_details = json.loads(raw_commit)
 
     self.commit_details["branch"] = self.runner.fetch_current_branch()
