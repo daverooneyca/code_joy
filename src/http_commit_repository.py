@@ -1,6 +1,8 @@
 import json
 import urllib.request
 
+from commit_repository import CommitRepository
+
 class HttpCommitRepository(CommitRepository):
   def __init__(self, destination_url="http://127.0.0.1:5000/commit"):
     # TODO - use a configuration file for these settings
