@@ -1,6 +1,7 @@
 import sys
 import pytest
-import doubles
+
+from doubles import allow
 
 sys.path.insert(0, './src/')
 
@@ -14,16 +15,23 @@ def test_build_commit_details():
 
     builder = CommitDetailsBuilder(rating_file);
 
+    sample_commit = {"id":"xyzzy-1","shortId":"xyzzy-2","authorName":"John Smith","committerName":"John Smith","committerEmail":"jsmith@somewhere.com","subject":"xyzzy","body":"xyzzy"}
+    sample_branch = "main"
+
+    allow(builder).fetch_last_commit.and_return(sample_commit)
+    allow(builder).fetch_commit_files.and_return(['file1', 'file2'])
+
     commit_details = builder.build()
 
     assert commit_details is not None
-    assert commit_details["id"] == "c9b597a53f9a8cf569d3144db1faa5d8e79cad63"
+    assert commit_details["id"] == "xyzzy-1"
+    assert commit_details["shortId"] == "xyzzy-2"
 
     assert commit_details["rating"] == test_rating
     assert commit_details["branch"] == "main"
     assert commit_details["git_location"] == "git@github.com:daverooneyca/code_joy.git"
     assert commit_details["location"] == "https://github.com/daverooneyca/code_joy/"
-    assert commit_details["files"] == ["README.md", "src/post_commit_handler.py"]
+    assert commit_details["files"] == ['file1', 'file2']
 
 def test_fetch_rating_with_known_value_should_equal_that_value():
     assert create_test_rating_with("2") == "2"
