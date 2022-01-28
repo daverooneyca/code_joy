@@ -3,6 +3,7 @@ import pytest
 
 from doubles import allow
 
+# Adds the 'src' directory to the search path for modules
 sys.path.insert(0, './src/')
 
 from commit_details_builder import CommitDetailsBuilder
@@ -22,7 +23,7 @@ def test_build_full_commit_details_from_known_data():
     sample_https_location = "https://github.com/xyzzy/xyzzy/"
     sample_files = "file1\nfile2"
 
-    # Stub the command runner calls to allows specifying the return values
+    # Stub the command runner calls to allow specifying the return values
     allow(runner).fetch_last_commit.and_return(sample_raw_commit)
     allow(runner).fetch_current_branch.and_return(sample_branch)
     allow(runner).fetch_location.and_return(sample_git_location)
