@@ -25,4 +25,15 @@ The `post-commit` hook will post the accepted commit to the specified HTTP endpo
 	- the default is `#!%userprofile%\AppData\Local\Microsoft\WindowsApps\python.exe`
 
 ## Python Libraries
+### Runtime
 CodeJoy doesn’t require any libraries outside of core Python
+
+### Development
+To run the tests, you need to install PyTest and Doubles
+
+`pip install -U pytest`
+`pip install -U doubles`
+
+To run the tests, from the root directory of the project simply run `pytest`.
+
+For all PyTest command line options, run `pytest -h`.
