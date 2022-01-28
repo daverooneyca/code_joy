@@ -8,6 +8,9 @@ class ExitCodes(Enum):
     FAIL = 1
 
 class CommitMessageHandler():
+   def __init__(self, rating_file="./rating_file"):
+      self.rating_file = rating_file
+
    def process_rating_in(self, commit_file):
       print("Checking commit message in {}".format(commit_file))
 
@@ -25,7 +28,7 @@ class CommitMessageHandler():
       return ExitCodes.SUCCESS
 
    def extract_rating_from(self, content):
-      expression = re.compile("\-[0-5]\-")
+      expression = re.compile(r"\-[0-5]\-")
 
       result = expression.search(content)
 
@@ -43,13 +46,12 @@ class CommitMessageHandler():
          return content
    
    def write_rating_file_with(self, rating):
-      rating_file = "./rating_file"
-      with open(rating_file, 'w') as file:
+      with open(self.rating_file, 'w') as file:
          file.write(rating)
          file.close()
 
    def rewrite_commit_file_with(self, content, commit_file):
-      stripped_content = re.sub("\-[0-5]\-", "", content).strip()
+      stripped_content = re.sub(r"\-[0-5]\-", "", content).strip()
 
       with open(commit_file, 'w') as file:
          file.write(stripped_content)
