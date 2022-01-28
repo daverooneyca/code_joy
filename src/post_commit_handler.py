@@ -14,6 +14,6 @@ class PostCommitHandler():
 
     commit_details = builder.build()
 
-    sender = HttpCommitSender(self.commit_details, self.destination_url)
+    sender = HttpCommitSender(commit_details, self.destination_url)
 
     sender.send()
