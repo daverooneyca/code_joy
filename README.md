@@ -37,4 +37,3 @@ To run the tests, you need to install PyTest and Doubles
 To run the tests, from the root directory of the project simply run `pytest`.
 
 For all PyTest command line options, run `pytest -h`.
-
