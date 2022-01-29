@@ -25,4 +25,8 @@ class HttpCommitRepository(CommitRepository):
       print(error)
 
     if(response is not None):
-      print(response.read().decode())
+      message = json.loads(response.read().decode())
+
+      if (message["code"] != 0):
+        print("ERROR saving the commit! This does not affect your Git repository, only the reporting of the Code Joy rating")
+        print("Error Message: {}".format(message["message"]))
