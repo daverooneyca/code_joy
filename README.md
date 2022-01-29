@@ -1,7 +1,7 @@
 # Git Hooks for Measuring Code Joy
 NOTE: This is a port of [@DocOnDev's Code Joy](https://github.com/DocOnDev/team_joy) to Python
 
-Doc Norton created a tool that allowed developers to indicate the "joy" they felt (or didn't feel) while working in a particular piece of code. This is done by adding a *_rating_* to the message when making a commit. [For background on why this is important, please read Doc's article on the topic.](https://www.scrumexpert.com/knowledge/measuring-joy-for-software-developers/)
+[Doc Norton](https://onbelay.co/) created a tool that allowed developers to indicate the "joy" they felt (or didn't feel) while working in a particular piece of code. This is done by adding a *_rating_* to the message when making a commit. [For background on why this is important, please read Doc's article on the topic.](https://www.scrumexpert.com/knowledge/measuring-joy-for-software-developers/)
 
 The format for the commit message is:
 
