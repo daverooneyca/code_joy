@@ -24,4 +24,5 @@ class HttpCommitRepository(CommitRepository):
       print("NOTE: This does not affect your commit, just reporting of it")
       print(error)
 
-    print(response.read().decode() if response is not None)
+    if(response is not None):
+      print(response.read().decode())
