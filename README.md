@@ -21,7 +21,7 @@ The rating is on a scale from 0 to 5:
 
 Obviously, we want to see 3's and up!
 
-Please note that, after processing, the rating is removed from the commit message and not stored in git or Gitlab.
+Please note that, after processing, the rating is removed from the commit message and not stored in git.
 
 
 # The Hooks
