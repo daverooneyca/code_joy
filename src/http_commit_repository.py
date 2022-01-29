@@ -20,13 +20,17 @@ class HttpCommitRepository(CommitRepository):
       response = urllib.request.urlopen(request)
 
     except (Exception) as error:
-      print("ERROR posting the commit details to " + self.destination_url)
-      print("NOTE: This does not affect your commit, just reporting of it")
-      print(error)
+      display_error_message("OS error: {0}".format(error))
 
     if(response is not None):
-      message = json.loads(response.read().decode())
+      raw_data = response.read()
+      encoding = response.info().get_content_charset('utf8')  # JSON default
+      
+      message = json.loads(raw_data.decode(encoding))
 
-      if (message["code"] != 0):
-        print("ERROR saving the commit! This does not affect your Git repository, only the reporting of the Code Joy rating")
-        print("Error Message: {}".format(message["message"]))
+      if(message["code"] != 0):
+        self.display_error_message("Remote error: {0}".format(message["message"]))
+
+  def display_error_message(self, message):
+    print("ERROR posting the commit details to " + self.destination_url)
+    print("NOTE: This does not affect your commit, just the reporting of it")
