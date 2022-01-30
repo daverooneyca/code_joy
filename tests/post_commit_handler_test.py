@@ -9,11 +9,10 @@ sys.path.insert(0, './src/')
 from post_commit_handler import PostCommitHandler
 from commit_repository import CommitRepository
 
-rating_file = "./tests/rating_file"
+config_file = "./tests/code_joy.cfg"
 
 def test_post_commit_handler():
-    repository = DummyCommitRepository()
-    handler = PostCommitHandler(repository, rating_file)
+    handler = PostCommitHandler(config_file)
 
     handler.execute()
 

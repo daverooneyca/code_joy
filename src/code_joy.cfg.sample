@@ -1,0 +1,4 @@
+{
+   "rating_file": "./rating_file",
+   "commit_repository_class": "http_commit_repository.HttpCommitRepository"
+}

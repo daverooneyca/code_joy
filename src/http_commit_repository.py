@@ -2,11 +2,15 @@ import json
 import urllib.request
 
 from commit_repository import CommitRepository
+from config_loader import ConfigurationLoader
 
 class HttpCommitRepository(CommitRepository):
-  def __init__(self, destination_url="http://127.0.0.1:5000/commit"):
-    # TODO - use a configuration file for these settings
-    self.destination_url = destination_url
+  def __init__(self, config_file_path="http_commit_repository.cfg"):
+    config_loader = ConfigurationLoader(config_file_path)
+
+    configuration = config_loader.load()
+
+    self.destination_url = configuration["destination_url"]
 
   def save(self, commit_details):
     parameters = json.dumps(commit_details).encode('utf8')
@@ -34,3 +38,4 @@ class HttpCommitRepository(CommitRepository):
   def display_error_message(self, message):
     print("ERROR posting the commit details to " + self.destination_url)
     print("NOTE: This does not affect your commit, just the reporting of it")
+
