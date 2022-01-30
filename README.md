@@ -47,11 +47,21 @@ The `post-commit` hook will post the accepted commit to the configured repositor
 - Change the first line of each of those scripts, depending on the location of the Python executable on your system
 	- the default is `#!%userprofile%\AppData\Local\Microsoft\WindowsApps\python.exe`
 
+# Configuration
+- In the `.git/hooks` directory, rename `code_joy.cfg.sample` to `code_joy.cfg`, and make any required changes to the settings in the file:
+	- You can change the path of the file that temporarily stores the rating from the commit message to any file accessible to the code
+	- You can change the repository class to be used for persisting the details of the commit. This defaults to: `http_commit_repository.HttpCommitRepository`, but can also be set to `noop_commit_repository.NoopCommitRepository` which does nothing except echo the details of the commit. This can be useful for testing.
+- If you are using the HttpCommitRepository, which simply sends the commit details to an HTTP endpoint using a POST call:
+	- In the `.git/hooks` directory, rename `http_commit_repository.cfg.sample` to `http_commit_repository.cfg`
+	- Set the endpoint’s URL in `http_commit_repository.cfg`
+
 ## Python Libraries
 ### Runtime
 CodeJoy doesn’t require any libraries outside of core Python
 
 ### Development
+If you wish to create a repository other than the NOOP and HTTP versions shipped with Code Joy, create a class that extends `CommitRepository` and implement the `save` method.
+
 To run the tests, you need to install PyTest and Doubles
 
 `pip install -U pytest`
