@@ -41,7 +41,7 @@ class HttpCommitRepository(CommitRepository):
       response = urllib.request.urlopen(request)
 
     except (Exception) as error:
-      display_error_message("OS error: {0}".format(error))
+      self.display_error_message("ERROR: {0}".format(error))
 
     if(response is not None):
       raw_data = response.read()
